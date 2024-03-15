@@ -1,9 +1,26 @@
-const Express = require('express');
+const Express = require("express");
 const app = new Express();
-const PORT = 3004
+const PORT = 3004;
 
-app.get('/', (req, res) => {
-    res.send('Heyyy')
-});
+async function main() {
+  //const db = db.connect()
 
-app.listen(PORT, () => console.log(`listening on port ${PORT}`));
+  // define auth middleware
+
+  // define routes
+    /* 
+    app.use('/users', users)
+    app.use('/currencies', currencies)
+    app.use('/wallets', wallets)
+    app.use('/offers', offers) 
+    */
+
+  app.get("/", (req, res) => {
+    res.send("Heyyy!!");
+  });
+
+  await app.listen(PORT, () => console.log(`listening on port ${PORT}`));
+  return app;
+}
+
+module.exports = main();
