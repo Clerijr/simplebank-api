@@ -1,26 +1,15 @@
 const Express = require("express");
+const { Server } = require('http')
 const app = new Express();
+const server = new Server(app)
 const PORT = 3004;
+const UserRoutes = require('./routes/userRoutes')
 
-async function main() {
-  //const db = db.connect()
 
-  // define auth middleware
+app.use(Express.json())
+app.use('/users', UserRoutes)
 
-  // define routes
-    /* 
-    app.use('/users', users)
-    app.use('/currencies', currencies)
-    app.use('/wallets', wallets)
-    app.use('/offers', offers) 
-    */
 
-  app.get("/", (req, res) => {
-    res.send("Heyyy!!");
-  });
+server.listen(PORT, () => console.log(`listening on port ${PORT}`));
 
-  await app.listen(PORT, () => console.log(`listening on port ${PORT}`));
-  return app;
-}
-
-module.exports = main();
+module.exports = { app, server};
